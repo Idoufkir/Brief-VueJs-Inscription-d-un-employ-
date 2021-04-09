@@ -37,19 +37,26 @@
                 <div v-if="!$v.adresse.required"  class="invalid-feedback">Adresse est requis</div>
             </div>
             <div class="col-4 form-group">
-                <label class="col-form-label col-form-label-md"><b>Pays </b><span class="text-danger">* : </span></label><br>
-                <select v-model.trim="pays" name="" id="" :class="{'is-invalid': validationStatus($v.pays)}">
+                <label class="col-form-label col-form-label-md" ><b>Pays </b><span class="text-danger">* : </span></label><br>
+                <select v-model.trim="pays" name="country" class="countries" id="countryId" :class="{'is-invalid': validationStatus($v.pays)}">
                     <option value="">Selection le pays</option>
                 </select>
                 <div v-if="!$v.pays.required"  class="invalid-feedback">Pays est requis</div>
             </div>
             <div class="col-4 form-group">
+                <label class="col-form-label col-form-label-md"><b>Région </b><span class="text-danger">* : </span></label><br>
+                <select v-model.trim="region" name="state" class="states" id="stateId" :class="{'is-invalid': validationStatus($v.region)}">
+                    <option value="">Selection la Région</option>
+                </select>
+                <div v-if="!$v.region.required"  class="invalid-feedback">Région est requis</div>
+            </div>
+            <div class="col-4 form-group">
                 <label class="col-form-label col-form-label-md"><b>Ville </b><span class="text-danger">* : </span></label><br>
-                <select v-model.trim="ville" name="" id="" :class="{'is-invalid': validationStatus($v.ville)}">
+                <select v-model.trim="ville" name="city" class="cities" id="cityId" :class="{'is-invalid': validationStatus($v.ville)}">
                     <option value="">Selection la ville</option>
                 </select>
                 <div v-if="!$v.ville.required"  class="invalid-feedback">Ville est requis</div>
-            </div>  <br><br><br><br>
+            </div><br><br><br><br>
             <div class="col-12 form-group text-center">
                 <button type="submit" class="btn btn-vue   btn-md col-3">Submit</button>
             </div>
@@ -70,7 +77,8 @@ export default {
             passport: '',
             adresse: '',
             ville: '',
-            pays: ''
+            pays: '',
+            region: ''
         }
     },
     validations: {
@@ -82,7 +90,8 @@ export default {
         passport: {required},
         adresse: {required},
         ville: {required},
-        pays: {required}
+        pays: {required},
+        region: {required}
     },
     methods: {
 
