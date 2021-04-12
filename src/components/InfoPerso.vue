@@ -1,5 +1,9 @@
 <template>
-    <form id="form-comp" v-on:submit.prevent="submit">
+        <div class="col-md-9 h-100 d-flex justify-content-center align-items-center">
+          <div class="col-md-12 rounded px-5 py-4 shadow bg-white text-left">
+
+
+    <form id="form-comp" v-on:submit.prevent="submit" @submit="addInfoPerso">
         <div class="row">
             <div class="col-4 form-group text">
                 <label class="col-form-label col-form-label-md"><b>Prénom </b><span class="text-danger">* :</span></label>
@@ -23,8 +27,7 @@
             </div>
             <div class="col-4 form-group">
                 <label class="col-form-label col-form-label-md"><b>Photo </b><span class="text-danger">* : </span></label>
-                <input v-model.trim="photo" type="text" :class="{'is-invalid': validationStatus($v.photo)}" class="form-control">
-                <div v-if="!$v.photo.required"  class="invalid-feedback">Photo est requis</div>
+                <input  type="file" :class="{'is-invalid': validationStatus($v.photo)}" class="form-control">
             </div>
             <div class="col-4 form-group">
                 <label class="col-form-label col-form-label-md"><b>Passeport N° </b><span class="text-danger">* : </span></label>
@@ -62,11 +65,13 @@
             </div>
         </div>
     </form>
+              </div>
+        </div>
 </template>
 <script>
 import { required } from 'vuelidate/lib/validators'
 export default {
-    name: 'CompForm',
+    name: 'InfoPerso',
     data: function() {
         return {
             prenom: '',
@@ -104,16 +109,28 @@ export default {
             this.$v.$touch();
             if (this.$v.$pendding || this.$v.$error) return;
 
-            alert('Data Submit!');
+            alert("Informations personnelles est ajoutées !!")
 
+        },
+        addInfoPerso(e){
+            e.preventDefault();
+            this.$store.state.InfoPerso = {
+                prenom: this.prenom,
+                nom: this.nom,
+                tele: this.tele,
+                cin: this.cin,
+                photo: this.photo,
+                passport: this.passport,
+                adresse: this.adresse,
+                ville: this.ville,
+                pays: this.pays,
+                region: this.region
+            }
+            // alert("Informations personnelles est ajoutées !!")
         }
     }
 }
 </script>
-<style>
-.btn-vue{
-    background: #53B985;
-    color: #31485D;
-    font-weight: bold;
-}
+
+<style scoped>
 </style>
