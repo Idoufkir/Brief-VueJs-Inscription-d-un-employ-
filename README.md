@@ -1,4 +1,4 @@
-# ateliervuejs
+# Atelier VueJs
 
 # Live netlify deployment :
 https://form-vuejs.netlify.app
