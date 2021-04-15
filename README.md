@@ -1,5 +1,8 @@
 # ateliervuejs
 
+# Live netlify deployment :
+https://form-vuejs.netlify.app
+
 ## Project setup
 ```
 yarn install
